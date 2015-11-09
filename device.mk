@@ -212,6 +212,10 @@ PRODUCT_PACKAGES += \
     libqomx_core \
     mm-qcamera-app
 
+RODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.HAL3.enabled=1 \
+    persist.camera.cpp.duplication=false
+ 
 # GPS
 PRODUCT_PACKAGES += \
     libgps.utils \

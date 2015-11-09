@@ -24,6 +24,7 @@ STRICT_ALIASING := true
 GRAPHITE_OPTS := true
 ENABLE_GCCONLY := true
 SDCLANG_PATH := prebuilts/clang/linux-x86/host/sdclang-3.8/bin
+QCOM_HARDWARE := true
 
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
