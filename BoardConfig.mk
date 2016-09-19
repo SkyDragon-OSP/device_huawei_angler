@@ -16,8 +16,13 @@
 
 TARGET_BOARD_PLATFORM := msm8994
 TARGET_BOOTLOADER_BOARD_NAME := angler
-SDCLANG := true
 
+SDCLANG := true
+CLANG_O3 := true
+POLLY_OPTS := true
+STRICT_ALIASING := true
+GRAPHITE_OPTS := true
+ENABLE_GCCONLY := true
 SDCLANG_PATH := prebuilts/clang/linux-x86/host/sdclang-3.8/bin
 
 TARGET_ARCH := arm64
@@ -25,18 +30,17 @@ TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a53
-CLANG_O3 := true
-POLLY_OPTS := true
-STRICT_ALIASING := true
-GRAPHITE_OPTS := true
-ENABLE_GCCONLY := true
+TARGET_CPU_FEATURES := crc
+
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53.a57
+TARGET_2ND_CPU_FEATURES := div,atomic_ldrd_strd
 
 ENABLE_CPUSETS := true
+
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
