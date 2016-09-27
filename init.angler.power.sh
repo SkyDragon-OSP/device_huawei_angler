@@ -94,7 +94,7 @@ write /sys/module/cpu_boost/parameters/input_boost_ms 40
 # Setting B.L scheduler parameters
 write /proc/sys/kernel/sched_migration_fixup 1
 write /proc/sys/kernel/sched_upmigrate 95
-write /proc/sys/kernel/sched_downmigrate 85
+write /proc/sys/kernel/sched_downmigrate 55
 write /proc/sys/kernel/sched_freq_inc_notify 400000
 write /proc/sys/kernel/sched_freq_dec_notify 400000
 
@@ -114,4 +114,4 @@ get-set-forall /sys/devices/soc.0/qcom,bcl.*/hotplug_soc_mask $bcl_hotplug_soc_m
 get-set-forall /sys/devices/soc.0/qcom,bcl.*/mode enable
 
 # change GPU initial power level from 305MHz(level 4) to 180MHz(level 5) for power savings
-write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 5
+write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 7
