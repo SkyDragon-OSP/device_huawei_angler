@@ -123,5 +123,60 @@ write /proc/sys/vm/swappiness 10
 write /proc/sys/vm/vfs_cache_pressure 20
 
 # Set write-back
-write /proc/sys/vm/dirty_expire_centisecs 500
 write /proc/sys/vm/dirty_writeback_centisecs 1000
+
+# Memory management.  Basic kernel parameters, and allow the high
+# level system server to be able to adjust the kernel OOM driver
+# parameters to match how it is managing things.
+    echo 1 > /proc/sys/vm/overcommit_memory
+    echo 4 > /proc/sys/vm/min_free_order_shift
+    chown -h root.system /sys/module/lowmemorykiller/parameters/adj
+    chmod -h 0664 /sys/module/lowmemorykiller/parameters/adj
+    chown -h root.system /sys/module/lowmemorykiller/parameters/minfree
+    chmod -h 0664 /sys/module/lowmemorykiller/parameters/minfree
+
+# Tweak background writeout
+    echo 200 > /proc/sys/vm/dirty_expire_centisecs
+    echo 5 > /proc/sys/vm/dirty_background_ratio
+
+# Permissions for System Server and daemons.
+	chown -h system.system /sys/class/timed_output/vibrator/enable
+	chown -h system.system /sys/class/leds/lcd-backlight/brightness
+	chown -h system.system /sys/class/leds/red/brightness
+    chown -h system.system /sys/class/leds/green/brightness
+    chown -h system.system /sys/class/leds/blue/brightness
+    chown -h system.system /sys/class/leds/red/device/grpfreq
+    chown -h system.system /sys/class/leds/red/device/grppwm
+    chown -h system.system /sys/class/leds/red/device/blink
+    chown -h system.system /sys/class/leds/red/brightness
+    chown -h system.system /sys/class/leds/green/brightness
+    chown -h system.system /sys/class/leds/blue/brightness
+    chown -h system.system /sys/class/leds/red/device/grpfreq
+    chown -h system.system /sys/class/leds/red/device/grppwm
+    chown -h system.system /sys/class/leds/red/device/blink
+    chown -h system.system /sys/module/sco/parameters/disable_esco
+    chown -h system.system /sys/kernel/ipv4/tcp_wmem_min
+    chown -h system.system /sys/kernel/ipv4/tcp_wmem_def
+    chown -h system.system /sys/kernel/ipv4/tcp_wmem_max
+    chown -h system.system /sys/kernel/ipv4/tcp_rmem_min
+    chown -h system.system /sys/kernel/ipv4/tcp_rmem_def
+    chown -h system.system /sys/kernel/ipv4/tcp_rmem_max
+    
+# Define TCP buffer sizes for various networks
+#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
+    setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208
+    setprop net.tcp.buffersize.wifi    524288,1048576,2097152,262144,524288,1048576
+    setprop net.tcp.buffersize.lte     524288,1048576,2097152,262144,524288,1048576
+    setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
+    setprop net.tcp.buffersize.hspa    4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.hsupa   4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.hsdpa   4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.hspap   4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
+    setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
+    setprop net.tcp.buffersize.evdo    4094,87380,262144,4096,16384,262144
+    
+# Assign TCP buffer thresholds to be ceiling value of technology maximums
+# Increased technology maximums should be reflected here.
+    echo 2097152 > /proc/sys/net/core/rmem_max
+    echo 2097152 > /proc/sys/net/core/wmem_max
