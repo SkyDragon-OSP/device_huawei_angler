@@ -141,10 +141,10 @@ on boot
     chown system system /sys/android_touch/doubletap2wake
     chmod 0644 /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input0/wake_gesture
     chmod 0644 /sys/android_touch/wake_gestures
-	chmod 0644 /sys/android_touch/doubletap2wake
-	write /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input0/wake_gesture 1
-	rite /sys/android_touch/wake_gestures 1
-	write /sys/android_touch/doubletap2wake 1
+    chmod 0644 /sys/android_touch/doubletap2wake
+    write /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input0/wake_gesture 0
+    write /sys/android_touch/wake_gestures 1
+    write /sys/android_touch/doubletap2wake 1
 	
 	
 on property:init.svc.per_mgr=running
