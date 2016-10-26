@@ -66,7 +66,6 @@ PRODUCT_COPY_FILES += \
 # Audio
 PRODUCT_COPY_FILES += \
     device/huawei/angler/audio_output_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_output_policy.conf \
-    device/huawei/angler/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.conf \
     device/huawei/angler/mixer_paths.xml:system/etc/mixer_paths.xml \
     device/huawei/angler/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
     device/huawei/angler/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
@@ -84,10 +83,6 @@ PRODUCT_COPY_FILES += \
     device/huawei/angler/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     device/huawei/angler/qpnp_pon.kl:system/usr/keylayout/qpnp_pon.kl \
     device/huawei/angler/synaptics_dsx.idc:system/usr/idc/synaptics_dsx.idc
-
-# for launcher layout
-#PRODUCT_PACKAGES += \
-#    AnglerLayout
 
 # include fingerprintd
 PRODUCT_PACKAGES += \
@@ -467,6 +462,21 @@ $(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-hwui-memory.m
 # setup dalvik vm configs.
 $(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-dalvik-heap.mk)
 
+# facelock properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.facelock.black_timeout=400 \
+    ro.facelock.det_timeout=1500 \
+    ro.facelock.rec_timeout=2500 \
+    ro.facelock.lively_timeout=2500 \
+    ro.facelock.est_max_time=600 \
+    ro.facelock.use_intro_anim=false
+
+# WiFi calling
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.data.iwlan.enable=true \
+    persist.radio.ignore_ims_wlan=1 \
+    persist.radio.data_con_rprt=1
+
 # drmservice prop
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
@@ -503,3 +513,11 @@ endif
 # b/29995499
 $(call add-product-sanitizer-module-config,cameraserver,never)
 $(call add-product-sanitizer-module-config,mm-qcamera-daemon,never)
+
+# Enable SDCardFS
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sys.sdcardfs=true
+
+# Enable Google Assistant
+ro.product.model=Pixel XL
+ro.opa.eligible_device=true
