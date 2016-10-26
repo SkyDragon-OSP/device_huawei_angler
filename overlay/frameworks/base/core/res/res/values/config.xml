@@ -408,4 +408,8 @@
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool>
 
+    <!-- Does the LED support multiple colors? Used to decide if the user can change the colors -->
+    <bool name="config_multiColorBatteryLed">true</bool>
+    <bool name="config_multiColorNotificationLed">true</bool>
+
 </resources>
