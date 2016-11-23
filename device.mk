@@ -65,7 +65,8 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/huawei/angler/audio_output_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_output_policy.conf \
+    device/huawei/angler/audio_output_policy.conf:system/etc/audio_output_policy.conf \
+    device/huawei/angler/audio_policy.conf:system/etc/audio_policy.conf \
     device/huawei/angler/mixer_paths.xml:system/etc/mixer_paths.xml \
     device/huawei/angler/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
     device/huawei/angler/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
@@ -184,6 +185,10 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     libaudio-resampler \
     dsm_ctrl
+
+# Sound Trigger HAL
+PRODUCT_PACKAGES += \
+    sound_trigger.primary.msm8994
 
 # Audio effects
 PRODUCT_PACKAGES += \
