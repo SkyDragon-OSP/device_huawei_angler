@@ -5,8 +5,8 @@ include $(LOCAL_PATH)/../../../common.mk
 include $(CLEAR_VARS)
 
 # Too many clang warnings/errors, see b/23163853.
-LOCAL_CLANG := false
-
+LOCAL_CLANG := false 
+LOCAL_CFLAGS	+= -fno-strict-aliasing
 MM_CAM_FILES := \
         src/mm_camera_interface.c \
         src/mm_camera.c \

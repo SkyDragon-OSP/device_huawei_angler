@@ -17,14 +17,10 @@
 TARGET_BOARD_PLATFORM := msm8994
 TARGET_BOOTLOADER_BOARD_NAME := angler
 
-SDCLANG := true
-CLANG_O3 := true
-POLLY_OPTS := true
+O3_OPTS := true
 STRICT_ALIASING := true
-GRAPHITE_OPTS := true
-ENABLE_GCCONLY := true
-SDCLANG_PATH := prebuilts/clang/linux-x86/host/sdclang-3.8/bin
-QCOM_HARDWARE := true
+POLLY_OPTS := true
+GRAPHITE_OPTS := false
 
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -51,7 +47,13 @@ BOARD_RAMDISK_OFFSET     := 0x02000000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=angler androidboot.console=none msm_rtb.filter=0x37 ehci-hcd.park=3 boot_cpus=0-7
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
+# Audio
+AUDIO_FEATURE_ENABLED_DSM_FEEDBACK := true
 BOARD_USES_ALSA_AUDIO := true
+
+# Needed for VoLTE
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/huawei/angler/bluetooth
@@ -145,6 +147,7 @@ NXP_CHIP_TYPE := 2
 # Testing related defines
 BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/angler-setup.sh
 
+# User Clang instead of GCC
 USE_CLANG_PLATFORM_BUILD := true
 
 -include vendor/huawei/angler/BoardConfigVendor.mk
