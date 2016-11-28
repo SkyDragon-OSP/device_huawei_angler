@@ -164,7 +164,7 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 # we do this little trick to fall back to the xxhdpi version
 # if the 560dpi doesn't exist.
 PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := 520dpi
+PRODUCT_AAPT_PREF_CONFIG := 510dpi
 # A list of dpis to select prebuilt apk, in precedence order.
 PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 
@@ -217,7 +217,7 @@ PRODUCT_PACKAGES += \
     libqomx_core \
     mm-qcamera-app
 
-RODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.HAL3.enabled=1 \
     persist.camera.cpp.duplication=false
  
@@ -269,9 +269,6 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
-PRODUCT_PACKAGES += \
-    AOSPLinks
-
 # NFC
 PRODUCT_PACKAGES += \
     libnfc-nci \
@@ -291,9 +288,9 @@ PRODUCT_COPY_FILES += \
 DEVICE_PACKAGE_OVERLAYS := \
     device/huawei/angler/overlay
 
-# Mobile Data provision prop
+# Allow tethering without provisioning app
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.android.prov_mobiledata=false
+    net.tethering.noprovisioning=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196610
@@ -430,10 +427,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-threads=8 \
     dalvik.vm.image-dex2oat-threads=8
 
-# old-apns.conf
-PRODUCT_COPY_FILES += \
-    device/huawei/angler/old-apns-conf.xml:system/etc/old-apns-conf.xml
-
 # Modem debugger
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 ifeq (,$(filter aosp_angler, $(TARGET_PRODUCT)))
@@ -512,12 +505,7 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4358
 
 # GPS configuration
 PRODUCT_COPY_FILES += \
-    device/huawei/angler/location/etc/gps.conf:system/etc/gps.conf:qcom
-
-# setup dm-verity configs.
-#PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc.0/f9824900.sdhci/by-name/system
-#PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/platform/soc.0/f9824900.sdhci/by-name/vendor
-#$(call inherit-product, build/target/product/verity.mk)
+    device/huawei/angler/gps.conf:system/etc/gps.conf:qcom
 
 # b/28992626
 # For app investigation, make ASAN-lite only sanitize 32-bit.

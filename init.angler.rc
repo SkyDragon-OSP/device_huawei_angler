@@ -139,9 +139,9 @@ on boot
     chown system system /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input0/wake_gesture
     chown system system /sys/android_touch/wake_gestures
     chown system system /sys/android_touch/doubletap2wake
-    chmod 0644 /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input0/wake_gesture
-    chmod 0644 /sys/android_touch/wake_gestures
-    chmod 0644 /sys/android_touch/doubletap2wake
+    chmod 0664 /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input0/wake_gesture
+    chmod 0664 /sys/android_touch/wake_gestures
+    chmod 0664 /sys/android_touch/doubletap2wake
     write /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input0/wake_gesture 0
     write /sys/android_touch/wake_gestures 1
     write /sys/android_touch/doubletap2wake 1
@@ -370,6 +370,7 @@ service loc_launcher /vendor/bin/loc_launcher
 #    class main
 #    disabled
 #    oneshot
+#    keycodes 114 115 116
 
 # start camera server as daemon
 service qcamerasvr /vendor/bin/mm-qcamera-daemon
