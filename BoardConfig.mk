@@ -21,6 +21,8 @@ O3_OPTS := true
 STRICT_ALIASING := true
 POLLY_OPTS := true
 GRAPHITE_OPTS := false
+SDCLANG := true
+SDCLANG_LTO := true
 
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
