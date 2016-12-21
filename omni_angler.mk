@@ -19,6 +19,8 @@ TARGET_BOOTANIMATION_SIZE := 1080x720
 # TWRP
 PRODUCT_COPY_FILES += \
     device/huawei/angler/twrp.fstab:recovery/root/etc/twrp.fstab
+	device/huawei/angler/com.google.android.camera.experimental2016.jar:system/framework/com.google.android.camera.experimental2016.jar
+	device/huawei/angler/com.google.android.camera.experimental2016.xml:system/etc/permissions/com.google.android.camera.experimental2016.xml
 
 # Allow tethering without provisioning app
 PRODUCT_PROPERTY_OVERRIDES += \
