@@ -206,6 +206,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     camera.msm8994 \
     libcamera \
+    libmm-qcamera \
     libmmcamera_interface \
     libmmcamera_interface2 \
     libmmjpeg_interface \
@@ -220,6 +221,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     libgps.utils \
     gps.msm8994
+
+# XML Packages
+PRODUCT_PACKAGES += \
+    libtinyxml \
+    libxml2
 
 # Sensor & activity_recognition HAL
 TARGET_USES_NANOHUB_SENSORHAL := true
@@ -492,11 +498,6 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4358
 # GPS configuration
 PRODUCT_COPY_FILES += \
     device/huawei/angler/gps.conf:system/etc/gps.conf:qcom
-
-# setup dm-verity configs.
-PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc.0/f9824900.sdhci/by-name/system
-PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/platform/soc.0/f9824900.sdhci/by-name/vendor
-$(call inherit-product, build/target/product/verity.mk)
 
 # b/28992626
 # For app investigation, make ASAN-lite only sanitize 32-bit.
