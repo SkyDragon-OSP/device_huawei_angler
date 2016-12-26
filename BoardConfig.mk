@@ -22,12 +22,14 @@ TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a53
+TARGET_CPU_FEATURES := crc
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53.a57
+TARGET_2ND_CPU_FEATURES := div,atomic_ldrd_strd
 
 ENABLE_CPUSETS := true
 
@@ -143,6 +145,7 @@ NXP_CHIP_TYPE := 2
 # Testing related defines
 BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/angler-setup.sh
 
+# Use Clang instead of GCC
 USE_CLANG_PLATFORM_BUILD := true
 
 # Temporary, will switch to a non-boardconfig enable soon. b/28545166.

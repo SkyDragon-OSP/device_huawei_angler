@@ -57,7 +57,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Override product naming for Omni
 PRODUCT_NAME := omni_angler
 PRODUCT_BRAND := google
-PRODUCT_MODEL := Nexus 6P
+PRODUCT_MODEL := Pixel XL
 PRODUCT_MANUFACTURER := Huawei
 PRODUCT_RESTRICT_VENDOR_FILES := false
 

@@ -42,7 +42,7 @@
 #define LOG_TAG "QCOMPowerHAL"
 #include <utils/Log.h>
 
-#define INTERACTION_BOOST
+//#define INTERACTION_BOOST
 
 static void *qcopt_handle;
 static int (*perf_lock_acq)(unsigned long handle, int duration,
