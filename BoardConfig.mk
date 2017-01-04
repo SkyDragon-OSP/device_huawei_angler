@@ -40,7 +40,6 @@ TARGET_2ND_CPU_FEATURES := div,atomic_ldrd_strd
 
 ENABLE_CPUSETS := true
 
-
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
@@ -82,6 +81,7 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
 TARGET_USES_C2D_COMPOSITION := true
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
 
 HAVE_ADRENO_SOURCE:= false
@@ -153,7 +153,7 @@ NXP_CHIP_TYPE := 2
 # Testing related defines
 BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/angler-setup.sh
 
-# User Clang instead of GCC
+# Use Clang instead of GCC
 USE_CLANG_PLATFORM_BUILD := true
 
 -include vendor/huawei/angler/BoardConfigVendor.mk
